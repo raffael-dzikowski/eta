@@ -181,6 +181,10 @@ library
                        , Eta.REPL
                        , Eta.REPL.Leak
                        , Eta.REPL.Linker
+                       , Eta.REPL.UI
+                       , Eta.REPL.UI.Info
+                       , Eta.REPL.UI.Monad
+                       , Eta.REPL.UI.Tags
                        , Eta.Rename.RnBinds
                        , Eta.Rename.RnEnv
                        , Eta.Rename.RnExpr
@@ -342,6 +346,7 @@ library
                        , unix-compat >= 0.4.3.1
                        , gitrev
                        , semigroups
+                       , haskeline == 0.7.*
 
     if os(windows)
         build-depends:   Win32
@@ -377,19 +382,13 @@ executable eta
        Build-depends:
            containers     == 0.5.*,
            eta-boot,
-           eta-repl,
-           haskeline      == 0.7.*
+           eta-repl
        if os(windows)
            build-depends:   Win32
        else
            build-depends:   unix
        CPP-Options: -DETA_REPL
        GHC-Options: -fno-warn-name-shadowing
-       Other-Modules:
-           Eta.REPL.UI
-           Eta.REPL.UI.Info
-           Eta.REPL.UI.Monad
-           Eta.REPL.UI.Tags
        Other-Extensions:
            BangPatterns
            FlexibleInstances

@@ -20,13 +20,16 @@
 --
 -----------------------------------------------------------------------------
 
-module Eta.REPL.UI (
-        interactiveUI,
-        REPLSettings(..),
-        defaultEtaReplSettings,
-        ghciCommands,
-        etaReplWelcomeMsg
-    ) where
+module Eta.REPL.UI
+    -- Temporarily exporting everything to simplifiy eta-ide impl.
+    -- (
+    --     interactiveUI,
+    --     REPLSettings(..),
+    --     defaultEtaReplSettings,
+    --     ghciCommands,
+    --     etaReplWelcomeMsg
+    -- )
+    where
 
 #include "HsVersions.h"
 
@@ -2269,7 +2272,7 @@ browseModule bang modl exports_only = do
 
   mb_mod_info <- GHC.getModuleInfo modl
   case mb_mod_info of
-    Nothing -> throwGhcException (CmdLineError ("unknown module: " ++
+    Nothing -> throwGhcException (CmdLineError ("unknown MOODLE module: " ++
                                 GHC.moduleNameString (GHC.moduleName modl)))
     Just mod_info -> do
         dflags <- getDynFlags
