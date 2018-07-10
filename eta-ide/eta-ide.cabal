@@ -8,7 +8,6 @@ maintainer:          typeleadhq@gmail.com
 copyright:           2018, TypeLead, Inc.
 category:            Distribution
 build-type:          Simple
-extra-source-files:  ChangeLog.md
 cabal-version:       >=1.10
 
 executable eta-ide

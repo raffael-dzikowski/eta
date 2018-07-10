@@ -1,7 +1,8 @@
 module Main where
 
 import Eta.BasicTypes.Module (emptyModuleEnv)
-import Eta.Main.GHC (runGhc)
+import Eta.Main.DynFlags (getDynFlags)
+import Eta.Main.GHC (runGhc, setProgramDynFlags)
 import Eta.Main.SysTools (findTopDir)
 import Eta.REPL.UI
 import Eta.REPL.UI.Monad
@@ -13,7 +14,9 @@ main :: IO ()
 main = do
   libdir <- findTopDir Nothing
   print libdir
-  runGhc (Just libdir) $
+  runGhc (Just libdir) $ do
+    dflags <- getDynFlags
+    setProgramDynFlags dflags
     startGHCi
       (runInputT defaultSettings loop)
       defaultGHCiState
